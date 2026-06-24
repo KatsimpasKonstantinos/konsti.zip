@@ -4,7 +4,7 @@ import imageSurvivingMars from "../assets/survivingmars.png";
 
 let projects = [
 
-    { name: "Surviving Mars Mapper", url: "https://survivingmars-mapper.konsti.zip/", github: "https://github.com/example/surviving-mars-mapper", image: imageSurvivingMars },
+    { name: "Surviving Mars Mapper", url: "https://survivingmars-mapper.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/surviving-mars-mapper", image: imageSurvivingMars },
     { name: "Stratagem Hero", url: "https://stratagemhero.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/StratagemHero", image: imageStratagemHero },
 ];
 

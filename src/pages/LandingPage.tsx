@@ -1,6 +1,6 @@
 import './LandingPage.css';
 import imageStratagemHero from "../assets/stratagemhero.png";
-import imageSurvivingMars from "../assets/survivingmars.jpg";
+import imageSurvivingMars from "../assets/survivingmars.png";
 
 let projects = [
     { name: "Stratagem Hero", url: "https://stratagemhero.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/StratagemHero", image: imageStratagemHero },

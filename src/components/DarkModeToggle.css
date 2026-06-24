@@ -4,6 +4,8 @@
     display: inline-block;
     width: 6rem;
     cursor: pointer;
+    user-select: none; 
+
 }
 
 .DarkModeToggle input {

@@ -3,9 +3,9 @@ import imageStratagemHero from "../assets/stratagemhero.png";
 import imageSurvivingMars from "../assets/survivingmars.png";
 
 let projects = [
-    { name: "Stratagem Hero", url: "https://stratagemhero.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/StratagemHero", image: imageStratagemHero },
+
     { name: "Surviving Mars Mapper", url: "https://survivingmars-mapper.konsti.zip/", github: "https://github.com/example/surviving-mars-mapper", image: imageSurvivingMars },
-    { name: "Project 3", url: "https://examplec.com", github: "https://github.com/example/project-3", image: imageStratagemHero }
+    { name: "Stratagem Hero", url: "https://stratagemhero.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/StratagemHero", image: imageStratagemHero },
 ];
 
 function LandingPage() {

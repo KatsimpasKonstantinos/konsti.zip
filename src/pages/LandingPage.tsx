@@ -1,6 +1,6 @@
 import './LandingPage.css';
-import imageStratagemHero from "../assets/stratagemhero.png";
-import imageSurvivingMars from "../assets/survivingmars.png";
+import imageStratagemHero from "../assets/stratagemhero.webp";
+import imageSurvivingMars from "../assets/survivingmars.webp";
 
 let projects = [
 

@@ -1,10 +1,9 @@
 .DarkModeToggle {
-    font-size: 17px;
     position: relative;
     display: inline-block;
     width: 6rem;
     cursor: pointer;
-    user-select: none; 
+    user-select: none;
 
 }
 
@@ -30,7 +29,7 @@
 .DarkModeToggle .toggle-cloud,
 .DarkModeToggle .darkmode-hole,
 .DarkModeToggle .darkmode-cover {
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--duration) var(--easing);
 }
 
 .DarkModeToggle .toggle-sun {
@@ -79,4 +78,10 @@
 
 .DarkModeToggle:hover .darkmode-cover {
     fill-opacity: 0.3;
+}
+
+.DarkModeToggle:has(input:focus-visible) svg {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 999px;
 }

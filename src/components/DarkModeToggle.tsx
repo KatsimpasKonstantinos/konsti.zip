@@ -43,7 +43,7 @@ export default function DarkModeToggle({ checked, onChange }: Props) {
                     width="100"
                     height="50"
                     rx="25"
-                    fill={"var(--color-shadow)"}
+                    fill="var(--color-border)"
                 />
 
                 <g className="toggle-stars">

@@ -1,19 +1,50 @@
+/* ==========================================================================
+   Design-Tokens
+   ========================================================================== */
+
 :root {
+  /* Farben (Dark Mode = Standard) */
   --color-text: #F1F5F9;
-  --color-bg: #090b0f;
-  --color-primary: #DC2626;
-  --color-secondary: #7b8491;
-  --color-accent: #3B82F6;
-  --color-shadow: rgba(0, 0, 0, 0.5);
   --color-text-secondary: #929aa1;
+  --color-bg: #090b0f;
+  --color-surface: #10141a;
+  --color-border: #262d36;
+  --color-primary: #DC2626;
+  /* Primärfarbe für Text auf --color-bg (ausreichender Kontrast) */
+  --color-primary-text: #EF4444;
+  --color-on-primary: #FFFFFF;
+  --color-shadow: rgba(0, 0, 0, 0.5);
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Typografie */
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  /* Abstände */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* Layout */
+  --layout-width: 1126px;
+  --content-width: 800px;
+  --page-gutter: var(--space-6);
+
+  /* Formen */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --border-accent: 2px solid var(--color-primary);
+
+  /* Bewegung */
+  --duration: 0.2s;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  font: 18px/1.5 var(--font-sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: var(--color-text);
   background: var(--color-bg);
   font-synthesis: none;
@@ -21,43 +52,146 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --transition-duration: 0.2s;
-  --transition-timing: ease;
-
-  transition: background-color var(--transition-duration) var(--transition-timing), color var(--transition-duration) var(--transition-timing), border-color var(--transition-duration) var(--transition-timing);
-
+  transition:
+    background-color var(--duration) var(--easing),
+    color var(--duration) var(--easing);
 
   @media (max-width: 1024px) {
     font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    --page-gutter: var(--space-4);
   }
 }
 
 .light {
   --color-text: #0F172A;
-  --color-bg: #F8FAFC;
-  --color-primary: #DC2626;
-  --color-secondary: #2a3647;
-  --color-accent: #2563EB;
-  --color-shadow: rgba(100, 116, 139, 0.15);
   --color-text-secondary: #5e6064;
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-primary: #DC2626;
+  --color-primary-text: #DC2626;
+  --color-shadow: rgba(100, 116, 139, 0.15);
+
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ==========================================================================
+   Basis
+   ========================================================================== */
+
+body {
+  margin: 0;
 }
 
 #root {
-  width: 1126px;
+  width: var(--layout-width);
   max-width: 100%;
   margin: 0 auto;
-  text-align: center;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space-4);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 var(--space-4);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Hauptbereich zwischen Navbar und Footer */
+.page {
+  flex: 1;
+  padding: var(--space-7) var(--page-gutter);
+}
+
+/* ==========================================================================
+   Gemeinsame Komponenten
+   ========================================================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--easing),
+    color var(--duration) var(--easing);
+}
+
+.button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Fließtext-Seiten (Impressum, Datenschutz) */
+.prose {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-accent);
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: var(--space-7);
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
+}
+
+.prose a {
+  color: var(--color-primary-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+.prose a:hover {
+  text-decoration-thickness: 2px;
 }

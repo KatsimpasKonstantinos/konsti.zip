@@ -1,9 +1,8 @@
-import './Datenschutz.css';
 import { Link } from 'react-router-dom';
 
 export default function Datenschutz() {
     return (
-        <div className='Datenschutz'>
+        <article className='prose'>
             <h1>Datenschutzerklärung</h1>
 
             <h2>1. Datenschutz auf einen Blick</h2>
@@ -94,6 +93,6 @@ export default function Datenschutz() {
                 oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene
                 Daten können Sie sich jederzeit an uns wenden.
             </p>
-        </div>
+        </article>
     );
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
 
-    const [lightMode, setDarkMode] = useState(() => {
+    const [lightMode, setLightMode] = useState(() => {
         return localStorage.getItem("theme") === "light";
     });
 
@@ -16,10 +16,10 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            <h1><Link to="/">Konsti.zip</Link></h1>
+            <Link to="/" className="brand">Konsti.zip</Link>
             <div className="right-section">
                 <a className="button" href="https://ko-fi.com/konstantinoskatsimpas">Support me on Ko-fi</a>
-                <DarkModeToggle checked={lightMode} onChange={() => setDarkMode(!lightMode)} />
+                <DarkModeToggle checked={lightMode} onChange={() => setLightMode(!lightMode)} />
             </div>
         </nav>
     )

@@ -1,8 +1,7 @@
-import './Impressum.css';
 
 export default function Impressum() {
     return (
-        <div className='Impressum'>
+        <article className='prose'>
             <h1>Impressum</h1>
 
             <h2>Angaben gemäß § 5 TMG</h2>
@@ -58,6 +57,6 @@ export default function Impressum() {
                 bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir
                 derartige Inhalte umgehend entfernen.
             </p>
-        </div>
+        </article>
     );
 }

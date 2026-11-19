@@ -15,7 +15,7 @@
         --color-text-secondary: light-dark(#5e6064, #929aa1);
         --color-bg: light-dark(#f8fafc, #090b0f);
         --color-surface: light-dark(#ffffff, #10141a);
-        --color-border: light-dark(#e2e8f0, #262d36);
+        --color-border: light-dark(#cbd5e1, #262d36);
         --color-primary: #dc2626;
         /* Primärfarbe für Text auf --color-bg (ausreichender Kontrast) */
         --color-primary-text: light-dark(#dc2626, #ef4444);

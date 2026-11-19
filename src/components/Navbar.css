@@ -1,45 +1,47 @@
-.navbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-4) var(--page-gutter);
-    border-bottom: var(--border-accent);
-}
-
-.navbar .brand {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.navbar .right-section {
-    display: flex;
-    align-items: center;
-    gap: var(--space-5);
-}
-
-@media (max-width: 600px) {
+@layer components {
     .navbar {
-        flex-wrap: nowrap;
-        gap: var(--space-3);
-    }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-4);
+        padding-block: var(--space-4);
+        padding-inline: var(--page-gutter);
+        border-block-end: var(--border-accent);
 
-    .navbar .brand {
-        font-size: 1.35rem;
-    }
+        & .brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
-    .navbar .right-section {
-        gap: var(--space-3);
-    }
+        & .right-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-5);
+        }
 
-    .navbar .button {
-        padding: var(--space-1) var(--space-3);
-        font-size: 0.8rem;
-    }
+        @media (width <= 600px) {
+            flex-wrap: nowrap;
+            gap: var(--space-3);
 
-    .navbar .DarkModeToggle {
-        width: 4rem;
+            & .brand {
+                font-size: 1.35rem;
+            }
+
+            & .right-section {
+                gap: var(--space-3);
+            }
+
+            & .button {
+                padding-block: var(--space-1);
+                padding-inline: var(--space-3);
+                font-size: 0.8rem;
+            }
+
+            & .DarkModeToggle {
+                inline-size: 4rem;
+            }
+        }
     }
 }

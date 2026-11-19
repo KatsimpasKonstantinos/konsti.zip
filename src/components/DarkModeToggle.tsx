@@ -1,4 +1,4 @@
-import "./DarkModeToggle.css";
+import './DarkModeToggle.css';
 
 type Props = {
     checked: boolean;
@@ -6,33 +6,22 @@ type Props = {
 };
 
 export default function DarkModeToggle({ checked, onChange }: Props) {
-    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isDarkMode = e.target.checked;
-        localStorage.setItem("theme", isDarkMode ? "light" : "dark");
-    
+        localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+
         onChange(e);
     };
 
     return (
         <label className="DarkModeToggle">
-            <input
-                type="checkbox"
-                checked={checked}
-                onChange={handleChange}
-            />
+            <input type="checkbox" checked={checked} onChange={handleChange} />
 
             <svg viewBox="0 0 101 51" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <mask id="darkmode-toggle-mask">
                         <rect x="0" y="0" width="101" height="51" rx="25" fill="white" />
-                        <circle
-                            className="darkmode-hole"
-                            cx="25"
-                            cy="25.5"
-                            r="20"
-                            fill="black"
-                        />
+                        <circle className="darkmode-hole" cx="25" cy="25.5" r="20" fill="black" />
                     </mask>
                 </defs>
 

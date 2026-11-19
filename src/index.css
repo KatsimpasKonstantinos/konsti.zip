@@ -1,197 +1,202 @@
-/* ==========================================================================
-   Design-Tokens
-   ========================================================================== */
-
-:root {
-  /* Farben (Dark Mode = Standard) */
-  --color-text: #F1F5F9;
-  --color-text-secondary: #929aa1;
-  --color-bg: #090b0f;
-  --color-surface: #10141a;
-  --color-border: #262d36;
-  --color-primary: #DC2626;
-  /* Primärfarbe für Text auf --color-bg (ausreichender Kontrast) */
-  --color-primary-text: #EF4444;
-  --color-on-primary: #FFFFFF;
-  --color-shadow: rgba(0, 0, 0, 0.5);
-
-  /* Typografie */
-  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
-
-  /* Abstände */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-
-  /* Layout */
-  --layout-width: 1126px;
-  --content-width: 800px;
-  --page-gutter: var(--space-6);
-
-  /* Formen */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --border-accent: 2px solid var(--color-primary);
-
-  /* Bewegung */
-  --duration: 0.2s;
-  --easing: cubic-bezier(0.4, 0, 0.2, 1);
-
-  font: 18px/1.5 var(--font-sans);
-  letter-spacing: 0.18px;
-  color-scheme: dark;
-  color: var(--color-text);
-  background: var(--color-bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  transition:
-    background-color var(--duration) var(--easing),
-    color var(--duration) var(--easing);
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-
-  @media (max-width: 600px) {
-    --page-gutter: var(--space-4);
-  }
-}
-
-.light {
-  --color-text: #0F172A;
-  --color-text-secondary: #5e6064;
-  --color-bg: #F8FAFC;
-  --color-surface: #FFFFFF;
-  --color-border: #E2E8F0;
-  --color-primary: #DC2626;
-  --color-primary-text: #DC2626;
-  --color-shadow: rgba(100, 116, 139, 0.15);
-
-  color-scheme: light;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0s !important;
-    animation-duration: 0.01ms !important;
-    animation-delay: 0s !important;
-  }
-}
+/* Kaskaden-Reihenfolge: spätere Ebenen gewinnen – unabhängig von der Spezifität */
+@layer base, components, pages;
 
 /* ==========================================================================
-   Basis
+   Basis: Design-Tokens, Reset, Typografie
    ========================================================================== */
 
-body {
-  margin: 0;
-}
+@layer base {
+    :root {
+        /* Dark Mode ist Standard; .light auf <html> schaltet um (siehe Navbar.tsx) */
+        color-scheme: dark;
 
-#root {
-  width: var(--layout-width);
-  max-width: 100%;
-  margin: 0 auto;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+        /* Farben – light-dark(<hell>, <dunkel>) folgt automatisch color-scheme */
+        --color-text: light-dark(#0f172a, #f1f5f9);
+        --color-text-secondary: light-dark(#5e6064, #929aa1);
+        --color-bg: light-dark(#f8fafc, #090b0f);
+        --color-surface: light-dark(#ffffff, #10141a);
+        --color-border: light-dark(#e2e8f0, #262d36);
+        --color-primary: #dc2626;
+        /* Primärfarbe für Text auf --color-bg (ausreichender Kontrast) */
+        --color-primary-text: light-dark(#dc2626, #ef4444);
+        --color-on-primary: #ffffff;
+        --color-shadow: light-dark(rgb(100 116 139 / 0.15), rgb(0 0 0 / 0.5));
 
-h1,
-h2,
-h3 {
-  margin: 0 0 var(--space-4);
-  line-height: 1.2;
-  text-wrap: balance;
-}
+        /* Typografie */
+        --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+        --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
 
-p {
-  margin: 0 0 var(--space-4);
-}
+        /* Abstände */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.5rem;
+        --space-6: 2rem;
+        --space-7: 3rem;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+        /* Layout */
+        --layout-width: 1126px;
+        --content-width: 800px;
+        --page-gutter: var(--space-6);
 
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-}
+        /* Formen */
+        --radius-sm: 6px;
+        --radius-md: 12px;
+        --border-accent: 2px solid var(--color-primary);
 
-/* Hauptbereich zwischen Navbar und Footer */
-.page {
-  flex: 1;
-  padding: var(--space-7) var(--page-gutter);
+        /* Bewegung */
+        --duration: 0.2s;
+        --easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Fließende Grundgröße: 16px auf kleinen, 18px auf großen Screens.
+           In rem, damit die Schriftgrößen-Einstellung des Browsers respektiert wird. */
+        font-family: var(--font-sans);
+        font-size: clamp(1rem, 0.85rem + 0.3vw, 1.125rem);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        color: var(--color-text);
+        background: var(--color-bg);
+        accent-color: var(--color-primary);
+        scrollbar-gutter: stable;
+
+        transition:
+            background-color var(--duration) var(--easing),
+            color var(--duration) var(--easing);
+
+        @media (width <= 600px) {
+            --page-gutter: var(--space-4);
+        }
+    }
+
+    :root.light {
+        color-scheme: light;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            transition-duration: 0s !important;
+            animation-duration: 0.01ms !important;
+            animation-delay: 0s !important;
+        }
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #root {
+        inline-size: var(--layout-width);
+        max-inline-size: 100%;
+        min-block-size: 100dvh;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin-block: 0 var(--space-4);
+        line-height: 1.2;
+        text-wrap: balance;
+    }
+
+    p {
+        margin-block: 0 var(--space-4);
+        text-wrap: pretty;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 3px;
+    }
+
+    /* Hauptbereich zwischen Navbar und Footer */
+    .page {
+        flex: 1;
+        padding-block: var(--space-7);
+        padding-inline: var(--page-gutter);
+    }
 }
 
 /* ==========================================================================
    Gemeinsame Komponenten
    ========================================================================== */
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-sm);
-  background-color: transparent;
-  color: var(--color-text);
-  font: inherit;
-  cursor: pointer;
-  transition:
-    background-color var(--duration) var(--easing),
-    color var(--duration) var(--easing);
-}
+@layer components {
+    .button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding-block: var(--space-2);
+        padding-inline: var(--space-4);
+        border: 1px solid var(--color-primary);
+        border-radius: var(--radius-sm);
+        background-color: transparent;
+        color: var(--color-text);
+        font: inherit;
+        cursor: pointer;
+        transition:
+            background-color var(--duration) var(--easing),
+            color var(--duration) var(--easing);
 
-.button:hover {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-}
+        &:hover {
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+        }
+    }
 
-/* Fließtext-Seiten (Impressum, Datenschutz) */
-.prose {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  text-align: left;
-}
+    /* Fließtext-Seiten (Impressum, Datenschutz) */
+    .prose {
+        max-inline-size: var(--content-width);
+        margin-inline: auto;
+        text-align: start;
 
-.prose h1 {
-  font-size: 2.25rem;
-  margin-bottom: var(--space-6);
-  padding-bottom: var(--space-3);
-  border-bottom: var(--border-accent);
-}
+        & h1 {
+            font-size: 2.25rem;
+            margin-block-end: var(--space-6);
+            padding-block-end: var(--space-3);
+            border-block-end: var(--border-accent);
+        }
 
-.prose h2 {
-  font-size: 1.5rem;
-  margin-top: var(--space-7);
-}
+        & h2 {
+            font-size: 1.5rem;
+            margin-block-start: var(--space-7);
+        }
 
-.prose h3 {
-  font-size: 1.2rem;
-  margin-top: var(--space-5);
-  margin-bottom: var(--space-2);
-}
+        & h3 {
+            font-size: 1.2rem;
+            margin-block: var(--space-5) var(--space-2);
+        }
 
-.prose a {
-  color: var(--color-primary-text);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  overflow-wrap: anywhere;
-}
+        & a {
+            color: var(--color-primary-text);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+            overflow-wrap: anywhere;
 
-.prose a:hover {
-  text-decoration-thickness: 2px;
+            &:hover {
+                text-decoration-thickness: 2px;
+            }
+        }
+    }
 }

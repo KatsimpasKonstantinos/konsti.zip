@@ -1,17 +1,19 @@
-.NotFound {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+@layer pages {
+    .NotFound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
 
-.NotFound h1 {
-    margin: 0;
-    font-size: clamp(6rem, 30vw, 16rem);
-    line-height: 1;
-}
+        & h1 {
+            margin: 0;
+            font-size: clamp(6rem, 30vw, 16rem);
+            line-height: 1;
+        }
 
-.NotFound p {
-    margin-bottom: var(--space-6);
-    color: var(--color-text-secondary);
+        & p {
+            margin-block-end: var(--space-6);
+            color: var(--color-text-secondary);
+        }
+    }
 }

@@ -1,0 +1,17 @@
+@layer components {
+    .ZipReveal {
+        position: relative;
+
+        /* Position und Größe setzt ZipReveal.tsx (reicht bis in Seitenrand und Navbar-Linie) */
+        & canvas {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+            mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent);
+        }
+    }
+
+    .ZipReveal-content {
+        position: relative;
+    }
+}

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import './Footer.css';
-
 
 function Footer() {
     return (
@@ -11,7 +10,7 @@ function Footer() {
                 <Link to="/datenschutz">Datenschutz</Link>
             </nav>
         </footer>
-    )
+    );
 }
 
-export default Footer
+export default Footer;

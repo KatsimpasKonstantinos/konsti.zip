@@ -1,22 +1,27 @@
-import { useState } from 'react';
 import './LandingPage.css';
-import Zipper from '../components/Zipper';
-import imageStratagemHero from "../assets/stratagemhero.webp";
-import imageSurvivingMars from "../assets/survivingmars.webp";
+import ZipReveal from '../components/ZipReveal';
+import imageStratagemHero from '../assets/stratagemhero.webp';
+import imageSurvivingMars from '../assets/survivingmars.webp';
 
 const projects = [
-
-    { name: "Surviving Mars Mapper", url: "https://surviving-mars-mapper.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/surviving-mars-mapper", image: imageSurvivingMars },
-    { name: "Stratagem Hero", url: "https://stratagemhero.konsti.zip/", github: "https://github.com/KatsimpasKonstantinos/StratagemHero", image: imageStratagemHero },
+    {
+        name: 'Surviving Mars Mapper',
+        url: 'https://surviving-mars-mapper.konsti.zip/',
+        github: 'https://github.com/KatsimpasKonstantinos/surviving-mars-mapper',
+        image: imageSurvivingMars,
+    },
+    {
+        name: 'Stratagem Hero',
+        url: 'https://stratagemhero.konsti.zip/',
+        github: 'https://github.com/KatsimpasKonstantinos/StratagemHero',
+        image: imageStratagemHero,
+    },
 ];
 
 function LandingPage() {
-    const [extracted, setExtracted] = useState(false);
-
     function renderProjects() {
-        return projects.map(({ name, url, github, image }, i) => (
-            <div key={name} className="project" style={{ '--i': i } as React.CSSProperties}>
-
+        return projects.map(({ name, url, github, image }) => (
+            <div key={name} className="project">
                 <div className="project-header">
                     <h2>{name}</h2>
                     <a
@@ -39,27 +44,29 @@ function LandingPage() {
                 >
                     <img src={image} alt={`${name} screenshot`} />
                 </a>
-
             </div>
         ));
     }
 
     return (
-        <div className="LandingPage">
-            <h1 className="intro">Hi! I'm <a href="https://konstantinos.katsimpas.com" target="_blank" rel="noopener noreferrer" className='Konsti'>Konsti</a>. This is where I make stuff on the web.</h1>
+        <ZipReveal fitTo=".project, .intro">
+            <div className="LandingPage">
+                <h1 className="intro">
+                    Hi! I'm{' '}
+                    <a
+                        href="https://konstantinos.katsimpas.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="Konsti"
+                    >
+                        Konsti
+                    </a>
+                    . This is where I make stuff on the web.
+                </h1>
 
-            <div className="unzip">
-                <Zipper onOpen={() => setExtracted(true)} />
-                <p className="unzip-status" aria-live="polite">
-                    <span className="unzip-file">konsti.zip</span>
-                    {extracted ? ` · ${projects.length} projects extracted` : ' · extracting…'}
-                </p>
+                <div className="projects">{renderProjects()}</div>
             </div>
-
-            <div className={`projects${extracted ? ' is-extracted' : ''}`}>
-                {renderProjects()}
-            </div>
-        </div>
+        </ZipReveal>
     );
 }
 
